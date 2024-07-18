@@ -8,8 +8,8 @@ router.get("/", (req, res) => {
   res.json({ message: "Marketplace Merah Kuning Hijau is running" });
 });
 
-router.use(authRoutes)
-router.use('/merchant',authenticateJWT,merchantRoutes);
-router.use('/customer',authenticateJWT,customerRoutes);
+router.use(authRoutes);
+router.use("/merchant", authenticateJWT, merchantRoutes);
+router.use("/customer", authenticateJWT, customerRoutes);
 
 module.exports = router;

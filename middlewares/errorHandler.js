@@ -9,7 +9,6 @@ module.exports = function errorHandler(err, req, res, next) {
       status = 400;
       message = err.errors[0].message;
       break;
-
     case "EntityEmpty":
     case "BadRequest":
       status = 400;

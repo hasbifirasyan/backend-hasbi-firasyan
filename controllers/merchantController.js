@@ -36,13 +36,13 @@ module.exports = class MerchantController {
           message: "You are not authorized",
         };
       }
-      const merchantId = req.user.id;
+      const MerchantId = req.user.id;
       const { name, price } = req.body;
 
       const product = await Product.create({
         name,
         price,
-        MerchantId: merchantId,
+        MerchantId,
       });
       res.status(201).json(product);
     } catch (error) {
