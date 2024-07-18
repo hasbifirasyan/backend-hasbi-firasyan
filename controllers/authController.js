@@ -1,4 +1,4 @@
-const { Merchant, Customer } = require('../models');
+const { Merchant, Customer } = require("../models");
 const { comparePassword } = require("../helpers/hashPassword");
 const { signToken } = require("../helpers/jwt");
 
@@ -27,7 +27,10 @@ module.exports = class AuthenticationController {
         };
       }
 
-      const access_token = signToken({ id: user.id, role: user instanceof Merchant ? 'merchant' : 'customer' });
+      const access_token = signToken({
+        id: user.id,
+        role: user instanceof Merchant ? "merchant" : "customer",
+      });
       res.status(200).json({ access_token });
     } catch (error) {
       next(error);
@@ -60,12 +63,24 @@ module.exports = class AuthenticationController {
       const hashedPassword = hashPassword(password);
 
       if (role === "merchant") {
-        const merchant = await Merchant.create({ email, password: hashedPassword, name });
+        const merchant = await Merchant.create({
+          email,
+          password: hashedPassword,
+          name,
+        });
       } else if (role === "customer") {
-        const customer = await Customer.create({ email, password: hashedPassword, name });
+        const customer = await Customer.create({
+          email,
+          password: hashedPassword,
+          name,
+        });
       }
 
-      res.status(201).json({ message: `User with role "${role}" and email "${email}" created` });
+      res
+        .status(201)
+        .json({
+          message: `User with role "${role}" and email "${email}" created`,
+        });
     } catch (error) {
       next(error);
     }

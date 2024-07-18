@@ -22,10 +22,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Name is required",
+            msg: "Customer Name is required",
           },
           notEmpty: {
-            msg: "Name is required",
+            msg: "Customer Name is required",
           },
         },
       },
@@ -33,17 +33,17 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: {
-          msg: "Email is already in use",
+          msg: "Customer Email is already in use",
         },
         validate: {
           isEmail: {
-            msg: "Email is invalid",
+            msg: "Customer Email is invalid",
           },
           notNull: {
-            msg: "Email is required",
+            msg: "Customer Email is required",
           },
           notEmpty: {
-            msg: "Email is required",
+            msg: "Customer Email is required",
           },
         },
       },
@@ -52,10 +52,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Password is required",
+            msg: "Customer Password is required",
           },
           notEmpty: {
-            msg: "Password is required",
+            msg: "Customer Password is required",
           },
         },
       },

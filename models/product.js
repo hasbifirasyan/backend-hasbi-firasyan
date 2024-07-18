@@ -1,18 +1,21 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Product extends Model {
+  class Product extends sequelize.Sequelize.Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      Product.belongsTo(models.Merchant, { foreignKey: "MerchantId" });
+      // Association with Merchant
+      Product.belongsTo(models.Merchant, { foreignKey: "MerchantId", onDelete: "CASCADE", onUpdate: "CASCADE" });
+      
+      // Association with Customer through CustomerProducts
       Product.belongsToMany(models.Customer, {
         through: "CustomerProducts",
         foreignKey: "ProductId",
+        onDelete: "CASCADE",
       });
     }
   }
@@ -23,12 +26,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Name is required",
+            msg: "Product Name is required",
           },
           notEmpty: {
-            msg: "Name is required",
+            msg: "Product Name is required",
           },
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       price: {
         type: DataTypes.INTEGER,
@@ -36,12 +41,14 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 0,
         validate: {
           notNull: {
-            msg: "Price is required",
+            msg: "Product Price is required",
           },
           notEmpty: {
-            msg: "Price is required",
+            msg: "Product Price is required",
           },
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       MerchantId: {
         type: DataTypes.INTEGER,
@@ -54,6 +61,8 @@ module.exports = (sequelize, DataTypes) => {
             msg: "MerchantId is required",
           },
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
     },
     {

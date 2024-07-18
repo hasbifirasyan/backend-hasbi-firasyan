@@ -7,8 +7,6 @@ router.get("/", (req, res) => {
 });
 
 router.use(authRoutes)
-router.use('/merchant', (req, res) => {
-    res.json({ message: "Merchant routes" });
-});
+router.use(merchantRoutes);
 
 module.exports = router;
