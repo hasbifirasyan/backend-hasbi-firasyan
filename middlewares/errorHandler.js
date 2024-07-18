@@ -10,11 +10,16 @@ module.exports = function errorHandler(err, req, res, next) {
       message = err.errors[0].message;
       break;
     case "EntityEmpty":
+    case "BadRequest":
       status = 400;
       message = err.message;
       break;
     case "InvalidAuthorization":
       status = 401;
+      message = err.message;
+      break;
+    case "NotFound":
+      status = 404;
       message = err.message;
       break;
   }

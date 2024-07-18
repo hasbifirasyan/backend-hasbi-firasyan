@@ -17,7 +17,7 @@ module.exports = class AuthenticationController {
         (await Merchant.findOne({ where: { email } })) ||
         (await Customer.findOne({ where: { email } }));
       if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        throw { name: "NotFound", message: "User not found" };
       }
 
       if (!user || !comparePassword(password, user.password)) {
@@ -54,7 +54,7 @@ module.exports = class AuthenticationController {
         (await Merchant.findOne({ where: { email } })) ||
         (await Customer.findOne({ where: { email } }));
       if (user) {
-        return res.status(400).json({ message: "Email already registered" });
+        throw { name: "BadRequest", message: "Email already registered" };
       }
 
       const hashedPassword = hashPassword(password);
