@@ -55,9 +55,9 @@ melakukan transaksi, market place merah kuning hijau menyiapkan diskon dan bebas
       ```
    3. membuat, migrasi, dan seeding database
       ```sh
-      npx sequelize db:create
-      npx sequelize db:migrate
-      npx sequelize db:seed:all
+      npx sequelize-cli db:create
+      npx sequelize-cli db:migrate
+      npx sequelize-cli db:seed:all
       ```
 5. Start server
    ```sh
