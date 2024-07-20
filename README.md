@@ -49,11 +49,8 @@ melakukan transaksi, market place merah kuning hijau menyiapkan diskon dan bebas
 
 4. Set up database mysql
    1. Sesuaikan username, password, database, dan host pada `config/config.json` sesuai pengaturan mysql Anda.
-   2. Inisialisasi sequelize
-      ```sh
-      npx sequelize-cli init
-      ```
-   3. membuat, migrasi, dan seeding database
+   2. Inisialisasi db dengan sequelize-cli
+   - membuat, migrasi, dan seeding database
       ```sh
       npx sequelize-cli db:create
       npx sequelize-cli db:migrate
